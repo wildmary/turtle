@@ -1,0 +1,172 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ontolex: <http://www.w3.org/ns/lemon/ontolex#> .
+@prefix synsem: <http://www.w3.org/ns/lemon/synsem#> .
+@prefix decomp: <http://www.w3.org/ns/lemon/decomp#> .
+@prefix vartrans: <http://www.w3.org/ns/lemon/vartrans#> .
+@prefix lime: <http://www.w3.org/ns/lemon/lime#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos#>.
+@prefix dbr: <http://dbpedia.org/resource/>.
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix void: <http://rdfs.org/ns/void#>.
+@prefix lexinfo: <http://www.lexinfo.net/ontology/2.0/lexinfo#>.
+@prefix semiotics: <http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#>.
+@prefix oils: <http://lemon-model.net/oils#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix provo: <http://www.w3.org/ns/prov#>.
+@prefix lexicog: <http://www.w3.org/ns/lemon/lexicog#> .
+@prefix bibo: <http://purl.org/ontology/bibo/>.
+@prefix : <https://www.slav.uni-heidelberg.de/id/Slavineckij>.
+@prefix morph: <https://www.w3.org/community/ontolex/wiki/Morphology>.
+
+:Epifanij_dict a lexicog:LexicographicResource, bibo:Manuscript;
+               dc:title "Лексикон греко-славяно-латинский"@ru;
+               dc:creator :Epifanij_Slavineckij;
+               bibo:status bibo:unpublished;
+               dc:language "grc", "chu", "lat";
+               bibo:localityName dbr:Moscow;
+               dct:created "XVII век";
+               lexicog:entry :entry_βαλιός.
+
+:Epifanij_Slavineckij a foaf:Person; rdfs:label "Епифаний Славинецкий"@ru.
+dbr:Moscow rdfs:label "Москва".
+
+#--------------------------------------------------------LANGUAGE
+:lexiconGRC a lime:Lexicon; 
+            lime:language "grc"; 
+            dct:language <http://id.loc.gov/vocabulary/iso639-2/grc>,  <http://lexvo.org/id/iso639-3/grc>;
+            lime:entry :βαλιός.                  
+                       
+:lexiconCHU a lime:Lexicon; 
+            lime:language "chu"; 
+            dct:language <http://id.loc.gov/vocabulary/iso639-1/cu>, <http://lexvo.org/id/iso639-3/chu>;
+            lime:entry :пестръ, :разный, :скоръ.
+
+:lexiconLAT a lime:Lexicon; 
+            lime:language "lat"; 
+            dct:language <http://id.loc.gov/vocabulary/iso639-1/la>, <http://lexvo.org/id/iso639-3/lat>;
+            lime:entry :maculosus, :varrius, :celer.
+
+lexinfo:masculine rdfs:label "ὁ"@grc.
+
+#----------------------------------------------------------TRANSLATION
+:tranSetGRC-CHU a vartrans:TranslationSet;
+                vartrans:trans :βαλιός_sense-пестръ_sense, :βαλιός_sense-разный_sense, :βαλιός_sense-скоръ_sense.
+
+:βαλιός_sense-пестръ_sense a vartrans:Translation; 
+                           vartrans:source :βαλιός_sense;
+                           vartrans:target :пестръ_sense.
+
+:βαλιός_sense-разный_sense a vartrans:Translation;
+                           vartrans:source :βαλιός_sense;
+                           vartrans:target :разный_sense.
+
+:βαλιός_sense-скоръ_sense a vartrans:Translation;
+                           vartrans:source :βαλιός_sense;
+                           vartrans:target :скоръ_sense.
+
+:tranSetCHU-LAT a vartrans:TranslationSet;
+                vartrans:trans :пестръ_sense-maculosus_sense, :разный_sense-varrius_sense, :скоръ_sense-celer_sense.
+
+:пестръ_sense-maculosus_sense a vartrans:Translation;
+                           vartrans:source :пестръ_sense;
+                           vartrans:target :maculosus_sense.
+
+:разный_sense-varrius_sense a vartrans:Translation;
+                           vartrans:source :разный_sense;
+                           vartrans:target :varrius_sense.
+
+:скоръ_sense-celer_sense a vartrans:Translation;
+                           vartrans:source :скоръ_sense;
+                           vartrans:target :celer_sense.
+
+
+#-----------------------------------------------------------ENTRY 
+#------------------------------------------------βαλιός
+:entry_βαλιός a lexicog:Entry; lexicog:subComponent :lcomp_βαλιός.
+:lcomp_βαλιός a lexicog:LexicographicComponent;
+           lexicog:describes :βαλιός.
+
+:βαλιός a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :βαλιός_sense;
+  rdfs:label "βαλιός"@grc;
+  lexinfo:gender lexinfo:masculine;
+  lexinfo:partOfSpeech lexinfo:Noun;
+  ontolex:canonicalForm :βαλιός_form;
+  ontolex:otherForm :βαλιός_infl.
+
+:βαλιός_form ontolex:writtenRep "βαλιός"@grc;
+  lexinfo:number lexinfo:singular;
+  lexinfo:case "nominative"@en.
+
+:βαλιός_infl lexinfo:number lexinfo:singular;
+  lexinfo:case "genitive"@en;
+  morph:consistsOf :suffix_ου.
+
+:suffix_ου a morph:AffixMorph;
+          morph:hasMorphStatus morph:inflectional;
+          morph:representation "ου"@grc.
+  
+:βαλιός_sense a ontolex:LexicalSense;
+              ontolex:usage [rdf:value "Таже имѧ конѧ Ахіллева"@chu].
+
+
+#------------------------------------------------пестръ
+:пестръ a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :пестръ_sense;
+  rdfs:label "пестръ"@chu;
+  ontolex:canonicalForm :пестръ_form. 
+
+:пестръ_sense a ontolex:LexicalSense.
+
+#------------------------------------------------maculosus 
+:maculosus  a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :maculosus_sense;
+  rdfs:label "maculosus"@lat;
+  ontolex:canonicalForm :maculosus_form.
+
+:maculosus_form ontolex:writtenRep "maculosus"@lat.
+
+:maculosus_sense a ontolex:LexicalSense.
+
+#------------------------------------------------разный
+:разный a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :разный_sense;
+  rdfs:label "разный"@chu;
+  ontolex:canonicalForm :разный_form. 
+
+:разный_sense a ontolex:LexicalSense.
+
+#------------------------------------------------varrius 
+:varrius  a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :varrius_sense;
+  rdfs:label "varrius"@lat;
+  ontolex:canonicalForm :varrius_form;
+  ontolex:otherForm :varrius_infl.
+
+:varrius_form ontolex:writtenRep "varrius"@lat.
+:varrius_infl ontolex:writtenRep "uar|rius"@lat.
+
+:varrius_sense a ontolex:LexicalSense.
+
+#------------------------------------------------скоръ
+:скоръ a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :скоръ_sense;
+  rdfs:label "скоръ"@chu;
+  ontolex:canonicalForm :скоръ_form. 
+
+:скоръ_sense a ontolex:LexicalSense.
+
+#------------------------------------------------celer
+:celer  a ontolex:LexicalEntry, ontolex:Word;
+  ontolex:sense :celer_sense;
+  rdfs:label "celer"@lat;
+  ontolex:canonicalForm :celer_form.
+
+:celer_form ontolex:writtenRep "celer"@lat.
+
+:celer_sense a ontolex:LexicalSense.
